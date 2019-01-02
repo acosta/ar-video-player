@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            url "http://google.bintray.com/googlevr"
+        }
+    }
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId "com.example.com.arvideoplayer"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        pickFirst 'lib/*/libc++_shared.so'
+        pickFirst 'lib/*/libgnustl_shared.so'
+    }
+
+    flavorDimensions "vr"
+
+    productFlavors {
+        monoscopic {
+            dimension "vr"
+            applicationIdSuffix ".monoscopic"
+        }
+    }
+}
+
+ext.sxrVersion='5.0.1-SNAPSHOT'
+project.ext.daydreamVersion = '1.130.0'
+project.ext.jomlVersion = "1.9.3-SNAPSHOT"
+project.ext.gsonVersion = '2.8.2'
+
+
+dependencies {
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "org.joml:joml-android:${jomlVersion}"
+    implementation "com.samsungxr:sxrsdk:$sxrVersion"
+
+    monoscopicImplementation "com.samsungxr:backend_monoscopic:$sxrVersion"
+}
