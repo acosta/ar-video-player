@@ -56,6 +56,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$gsonVersion"
     implementation "org.joml:joml-android:${jomlVersion}"
     implementation "com.samsungxr:sxrsdk:$sxrVersion"
+    implementation "com.samsungxr:MixedReality:$sxrVersion"
 
     monoscopicImplementation "com.samsungxr:backend_monoscopic:$sxrVersion"
 }
