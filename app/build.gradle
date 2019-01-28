@@ -35,19 +35,9 @@ android {
         pickFirst 'lib/*/libc++_shared.so'
         pickFirst 'lib/*/libgnustl_shared.so'
     }
-
-    flavorDimensions "vr"
-
-    productFlavors {
-        monoscopic {
-            dimension "vr"
-            applicationIdSuffix ".monoscopic"
-        }
-    }
 }
 
 ext.sxrVersion='5.0.1-SNAPSHOT'
-project.ext.daydreamVersion = '1.130.0'
 project.ext.jomlVersion = "1.9.3-SNAPSHOT"
 project.ext.gsonVersion = '2.8.2'
 
@@ -57,6 +47,5 @@ dependencies {
     implementation "org.joml:joml-android:${jomlVersion}"
     implementation "com.samsungxr:sxrsdk:$sxrVersion"
     implementation "com.samsungxr:MixedReality:$sxrVersion"
-
-    monoscopicImplementation "com.samsungxr:backend_monoscopic:$sxrVersion"
+    implementation "com.samsungxr:backend_monoscopic:$sxrVersion"
 }
