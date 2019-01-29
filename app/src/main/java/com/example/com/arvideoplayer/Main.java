@@ -2,6 +2,8 @@ package com.example.com.arvideoplayer;
 
 import com.samsungxr.SXRContext;
 import com.samsungxr.SXRMain;
+import com.samsungxr.mixedreality.IMixedReality;
+import com.samsungxr.mixedreality.IMixedRealityEvents;
 import com.samsungxr.mixedreality.IPlaneEvents;
 import com.samsungxr.mixedreality.SXRMixedReality;
 import com.samsungxr.mixedreality.SXRPlane;
@@ -18,6 +20,7 @@ public class Main extends SXRMain {
 
         mMixedReality = new SXRMixedReality(sxrContext.getMainScene());
         mMixedReality.getEventReceiver().addListener(planeEventsListener);
+        mMixedReality.getEventReceiver().addListener(mixedRealityEventsListener);
         mMixedReality.resume();
     }
 
@@ -44,6 +47,23 @@ public class Main extends SXRMain {
 
         @Override
         public void onPlaneGeometryChange(SXRPlane plane) {
+
+        }
+    };
+
+    private IMixedRealityEvents mixedRealityEventsListener = new IMixedRealityEvents() {
+        @Override
+        public void onMixedRealityStart(IMixedReality mr) {
+            mr.setPlaneFindingMode(SXRMixedReality.PlaneFindingMode.VERTICAL);
+        }
+
+        @Override
+        public void onMixedRealityStop(IMixedReality mr) {
+
+        }
+
+        @Override
+        public void onMixedRealityUpdate(IMixedReality mr) {
 
         }
     };
