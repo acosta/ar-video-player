@@ -20,11 +20,14 @@ public class Main extends SXRMain {
 
     private final String TAG = Main.class.getSimpleName();
     private SXRContext mContext;
+    private PointCloudShader mPointCloudShader;
 
     @Override
     public void onInit(SXRContext sxrContext) {
 
         mContext = sxrContext;
+
+        mPointCloudShader = new PointCloudShader(sxrContext);
 
         SXRMixedReality mMixedReality = new SXRMixedReality(sxrContext.getMainScene());
         mMixedReality.getEventReceiver().addListener(planeEventsListener);
