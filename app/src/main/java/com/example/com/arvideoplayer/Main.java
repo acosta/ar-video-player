@@ -20,18 +20,20 @@ public class Main extends SXRMain {
 
     private final String TAG = Main.class.getSimpleName();
     private SXRContext mContext;
-    private PointCloudShader mPointCloudShader;
+    private PointCloud mPointCloud;
+    private SXRMixedReality mMixedReality;
 
     @Override
     public void onInit(SXRContext sxrContext) {
 
         mContext = sxrContext;
 
-        mPointCloudShader = new PointCloudShader(sxrContext);
+        mPointCloud = new PointCloud(sxrContext);
 
-        SXRMixedReality mMixedReality = new SXRMixedReality(sxrContext.getMainScene());
+        mMixedReality = new SXRMixedReality(sxrContext.getMainScene());
         mMixedReality.getEventReceiver().addListener(planeEventsListener);
         mMixedReality.getEventReceiver().addListener(mixedRealityEventsListener);
+        mMixedReality.getEventReceiver().addListener(mPointCloud);
         mMixedReality.resume();
     }
 
@@ -47,6 +49,10 @@ public class Main extends SXRMain {
             SXRNode planeNode = createPlaneNode();
             planeNode.attachComponent(plane);
             mContext.getMainScene().addNode(planeNode);
+
+            //Stop to show the Points Cloud
+            mPointCloud.disablePoints();
+            mMixedReality.getEventReceiver().removeListener(mPointCloud);
         }
 
         @Override

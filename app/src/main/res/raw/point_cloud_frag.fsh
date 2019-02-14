@@ -9,5 +9,5 @@ layout (location = 0) out vec4 outColor;
 
 void main()
 {
-    outColor = vec4(u_color.x, u_color.y, u_color.z, 1);
+    outColor = vec4(u_color.xyz, 1.0f);
 }
