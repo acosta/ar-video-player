@@ -89,6 +89,11 @@ public class Main extends SXRMain {
         public void onMixedRealityUpdate(IMixedReality mr) {
 
         }
+
+        @Override
+        public void onMixedRealityError(IMixedReality mr, String errmsg) {
+
+        }
     };
 
     private SXRNode createPlaneNode() {

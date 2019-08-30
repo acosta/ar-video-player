@@ -81,4 +81,9 @@ public class PointCloud implements IMixedRealityEvents {
             newPointCloud.release();
         }
     }
+
+    @Override
+    public void onMixedRealityError(IMixedReality mr, String errmsg) {
+
+    }
 }
